@@ -1,5 +1,7 @@
 package tech.bts.productcatalog;
 
+import com.google.gson.Gson;
+
 import java.io.PrintWriter;
 import java.util.*;
 
@@ -16,18 +18,22 @@ public class ProductCatalog {
         products.add(p2);
         products.add(p3);
 
-        writeCSV(products);
+        writeJSON(products);
+    }
 
-        System.out.println("File written");
+    public static void writeJSON(List<Product> products) throws Exception {
+
+        Gson gson = new Gson();
+        String json = gson.toJson(products);
+
+        PrintWriter writer = new PrintWriter("products.json");
+        writer.println(json);
+        writer.close();
     }
 
     public static void writeCSV(List<Product> products) throws Exception {
 
         PrintWriter writer = new PrintWriter("products.csv");
-
-        // Name,Price,Units
-        // iPhone X,1000,50
-        // Macbook Pro,1500,30
 
         writer.println("Name,Price,Units");
 
