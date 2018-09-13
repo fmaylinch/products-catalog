@@ -24,7 +24,7 @@ public class ProductCatalog {
     public static void writeJSON(List<Product> products) throws Exception {
 
         Gson gson = new Gson();
-        String json = gson.toJson(products);
+        String json = gson.toJson(products); // serializing (object to String)
 
         PrintWriter writer = new PrintWriter("products.json");
         writer.println(json);
