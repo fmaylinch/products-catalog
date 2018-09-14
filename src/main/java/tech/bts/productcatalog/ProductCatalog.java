@@ -1,8 +1,12 @@
 package tech.bts.productcatalog;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.PrintWriter;
+import java.lang.reflect.Type;
 import java.util.*;
 
 /**
@@ -29,7 +33,11 @@ public class ProductCatalog {
 
         Scanner input = new Scanner(System.in); // scanner can read from keyboard
 
-        List<Product> products = new ArrayList<Product>(); // creates an empty list
+        BufferedReader reader = new BufferedReader( new FileReader("products.json") );
+        String json = reader.readLine();
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Product>>(){}.getType();
+        List<Product> products = gson.fromJson(json, type);
 
         while (true) {
 
