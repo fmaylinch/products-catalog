@@ -1,5 +1,8 @@
 package tech.bts.productcatalog;
 
+import com.google.gson.Gson;
+
+import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -22,7 +25,7 @@ import java.util.*;
  */
 public class ProductCatalog {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         Scanner input = new Scanner(System.in); // scanner can read from keyboard
 
@@ -34,6 +37,7 @@ public class ProductCatalog {
             String line = input.nextLine();
 
             if (line.equals("exit")) {
+                writeJSON(products);
                 break;
 
             } else if (line.equals("add")) {
@@ -60,4 +64,15 @@ public class ProductCatalog {
             }
         }
     }
+
+    public static void writeJSON(List<Product> products) throws Exception {
+
+        Gson gson = new Gson();
+        String json = gson.toJson(products); // serializing (object to String)
+
+        PrintWriter writer = new PrintWriter("products.json");
+        writer.println(json);
+        writer.close();
+    }
+
 }
