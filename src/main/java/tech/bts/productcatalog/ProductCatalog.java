@@ -33,8 +33,6 @@ public class ProductCatalog {
             System.out.print("What do you want to do? ");
             String line = input.nextLine();
 
-            System.out.println("You want to: " + line);
-
             if (line.equals("exit")) {
                 break;
             }
@@ -50,16 +48,18 @@ public class ProductCatalog {
                 System.out.print("Units? ");
                 int units = Integer.parseInt( input.nextLine() );
 
-                Product p = new Product(name, price, units);
-                System.out.println("Product added: " + p);
+                Product product = new Product(name, price, units);
+                products.add(product);
+
+                System.out.println("Product added: " + product);
             }
 
             if (line.equals("list")) {
 
-                // TODO: print the list of products I have added
+                for (Product product : products) {
+                    System.out.println(product);
+                }
             }
-
-            System.out.println("Action done!");
         }
     }
 }
